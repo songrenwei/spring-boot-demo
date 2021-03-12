@@ -24,6 +24,7 @@
         <mongoplus.version>1.0.0.RELEASE</mongoplus.version>
         <guava.version>30.0-jre</guava.version>
         <druid.version>1.1.10</druid.version>
+        <forest.version>1.3.0</forest.version>
     </properties>
 
     <modules>
@@ -40,11 +41,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 
@@ -67,7 +63,12 @@
             <dependency>
                 <groupId>com.dtflys.forest</groupId>
                 <artifactId>spring-boot-starter-forest</artifactId>
-                <version>1.3.0</version>
+                <version>${forest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

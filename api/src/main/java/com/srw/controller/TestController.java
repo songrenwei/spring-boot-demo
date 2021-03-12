@@ -32,7 +32,7 @@ public class TestController {
     @GetMapping("download")
     public void download(HttpServletResponse response) throws IOException {
         response.setContentType("application/vnd.ms-excel");
-//        response.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
         EasyExcel.write(response.getOutputStream(), DataModel.class).sheet("模板").doWrite(data());
