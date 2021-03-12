@@ -1,0 +1,22 @@
+logging:
+    file:
+        path: E://project//logback
+server:
+    port: 8081
+    servlet:
+        context-path: /api
+spring:
+    application:
+        name: stage-api
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        initial-size: 10
+        max-active: 20
+        max-idle: 8
+        max-wait: 10000
+        min-idle: 8
+        password: 123456
+        url: jdbc:mysql://localhost/user?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+        username: root
+    profiles:
+        include: business,persistence,common
