@@ -1,4 +1,4 @@
-package com.srw.provider.mq;
+package com.srw.provider.mq.rabbit;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

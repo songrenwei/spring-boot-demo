@@ -1,4 +1,4 @@
-package com.srw.consumer.mq;
+package com.srw.consumer.mq.rabbit;
 
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-@RabbitListener(queues = "fanout.hello.2")
-public class FanoutReceiver_2 {
+@RabbitListener(queues = "fanout.hello.1")
+public class FanoutReceiver_1 {
 
     @RabbitHandler
     public void receive(String in, Channel channel, Message message) throws IOException {
@@ -27,7 +27,7 @@ public class FanoutReceiver_2 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        log.info(" [fanout2] Received '{}'", in);
+        log.info(" [fanout1] Received '{}'", in);
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 

@@ -1,4 +1,4 @@
-package com.srw.consumer.mq;
+package com.srw.consumer.mq.rabbit;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;

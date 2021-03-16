@@ -1,6 +1,6 @@
 package com.srw.provider.controller;
 
-import com.srw.provider.mq.*;
+import com.srw.provider.mq.rabbit.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dreamlu.mica.core.result.R;

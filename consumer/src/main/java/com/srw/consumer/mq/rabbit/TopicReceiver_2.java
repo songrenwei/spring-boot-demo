@@ -1,4 +1,4 @@
-package com.srw.consumer.mq;
+package com.srw.consumer.mq.rabbit;
 
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -17,17 +17,13 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-@RabbitListener(queues = "direct.hello.2")
-public class DirectReceiver_2 {
+@RabbitListener(queues = "topic.hello.2")
+public class TopicReceiver_2 {
 
     @RabbitHandler
-    public void receive(String in, Channel channel, Message message) throws IOException {
-        try {
-            TimeUnit.MILLISECONDS.sleep((int) (Math.random() * 10) * 100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        log.info(" [direct2] Received '{}'", in);
+    public void receive(String in, Channel channel, Message message) throws IOException, InterruptedException {
+        TimeUnit.MILLISECONDS.sleep((int) (Math.random() * 10) * 100);
+        log.info(" [topic2] Received '{}'", in);
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 
