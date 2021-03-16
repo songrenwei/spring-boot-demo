@@ -13,24 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
 
-//    @Bean
-//    public CachingConnectionFactory connectionFactory() {
-//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("127.0.0.1", 5672);
-//        connectionFactory.setUsername("srw");
-//        connectionFactory.setPassword("srw");
-//        connectionFactory.setVirtualHost("/srw");
-//        return connectionFactory;
-//    }
-//
-//    @Bean
-//    public RabbitListenerContainerFactory<?> rabbitListenerContainerFactory(CachingConnectionFactory connectionFactory){
-//        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-//        factory.setConnectionFactory(connectionFactory);
-////        factory.setMessageConverter(new Jackson2JsonMessageConverter());
-//        factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
-//        return factory;
-//    }
-
     //*****************************简单模式**************************
     @Bean
     public Queue hello() {
