@@ -68,17 +68,17 @@ public class RabbitMqConfig {
 
     @Bean
     public Binding directBinding1a() {
-        return BindingBuilder.bind(directQueue1()).to(direct()).with("10");
+        return BindingBuilder.bind(directQueue1()).to(direct()).with("cat");
     }
 
     @Bean
     public Binding directBinding1b() {
-        return BindingBuilder.bind(directQueue1()).to(direct()).with("11");
+        return BindingBuilder.bind(directQueue1()).to(direct()).with("dog");
     }
 
     @Bean
     public Binding directBinding2() {
-        return BindingBuilder.bind(directQueue2()).to(direct()).with("20");
+        return BindingBuilder.bind(directQueue2()).to(direct()).with("pig");
     }
 
     //*****************************通配符模式**************************

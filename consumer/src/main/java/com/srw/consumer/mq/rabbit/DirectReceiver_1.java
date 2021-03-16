@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Math.random;
+
 /**
  * @Description:
  * @Author: renwei.song
@@ -21,14 +23,10 @@ import java.util.concurrent.TimeUnit;
 public class DirectReceiver_1 {
 
     @RabbitHandler
-    public void receive(String in, Channel channel, Message message) throws IOException {
-        try {
-            TimeUnit.MILLISECONDS.sleep((int) (Math.random() * 10) * 100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        log.info(" [direct1] Received '{}'", in);
+    public void receive(String in, Channel channel, Message message) throws IOException, InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        log.info(" [Direct1] Received '{}'", in);
     }
 
 }

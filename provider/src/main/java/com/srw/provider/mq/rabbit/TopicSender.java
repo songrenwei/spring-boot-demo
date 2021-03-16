@@ -23,8 +23,7 @@ public class TopicSender {
 
     public void send(int index, String message) {
         template.convertAndSend(EXCHANGE_NAME, keys[index], message+"-"+keys[index]);
-
-        log.info(" [topic] Sent '{}'", message);
+        log.info(" [Topic] Sent '{}'", message);
     }
 
 }

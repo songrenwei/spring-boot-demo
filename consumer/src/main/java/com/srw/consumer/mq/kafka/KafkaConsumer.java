@@ -19,7 +19,7 @@ import java.util.Optional;
 @Component
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "topic.test", groupId = "topic.group1")
+//    @KafkaListener(topics = "topic.test", groupId = "topic.group1")
     public void topicTest(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
         Optional<?>  message = Optional.ofNullable(record.value());
@@ -30,7 +30,7 @@ public class KafkaConsumer {
         }
     }
 
-    @KafkaListener(topics = "topic.test", groupId = "topic.group2")
+//    @KafkaListener(topics = "topic.test", groupId = "topic.group2")
     public void topicTest1(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
         Optional<?> message = Optional.ofNullable(record.value());

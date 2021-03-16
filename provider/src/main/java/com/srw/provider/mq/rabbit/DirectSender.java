@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
+import static java.lang.Math.random;
+
 /**
  * @Description:
  * @Author: renwei.song
@@ -17,15 +19,12 @@ public class DirectSender {
 
     private final RabbitTemplate template;
     private static final String EXCHANGE_NAME = "exchange.direct";
+    private final String[] keys = {"dog", "cat", "pig"};
 
-    public void send(int index, String message) {
-        if (index % 2 == 0) {
-            template.convertAndSend(EXCHANGE_NAME, "11", message);
-        } else {
-            template.convertAndSend(EXCHANGE_NAME, "20", message);
-        }
-
-        log.info(" [direct] Sent '{}'", message);
+    public void send(String message) {
+        int random = (int)(random()*3);
+        template.convertAndSend(EXCHANGE_NAME, keys[random], message+"-"+keys[random]);
+        log.info(" [Direct] Sent '{}'", message);
     }
 
 }

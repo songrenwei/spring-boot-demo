@@ -50,7 +50,7 @@ public class RabbitController {
     @RequestMapping("/send/direct")
     public R<?> sendDirect() {
         for (int i = 0; i < 10; i++) {
-            directSender.send(i, "发他10个direct消息"+i);
+            directSender.send("发他10个direct消息"+i);
         }
         return R.success("send.direct.ok");
     }

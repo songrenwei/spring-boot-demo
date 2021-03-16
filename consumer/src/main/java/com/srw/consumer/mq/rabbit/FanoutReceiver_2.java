@@ -21,14 +21,10 @@ import java.util.concurrent.TimeUnit;
 public class FanoutReceiver_2 {
 
     @RabbitHandler
-    public void receive(String in, Channel channel, Message message) throws IOException {
-        try {
-            TimeUnit.MILLISECONDS.sleep((int) (Math.random() * 10) * 100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        log.info(" [fanout2] Received '{}'", in);
+    public void receive(String in, Channel channel, Message message) throws IOException, InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        log.info(" [Fanout2] Received '{}'", in);
     }
 
 }

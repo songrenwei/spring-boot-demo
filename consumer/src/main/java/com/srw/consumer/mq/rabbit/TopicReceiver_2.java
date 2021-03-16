@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Math.*;
+
 /**
  * @Description:
  * @Author: renwei.song
@@ -22,9 +24,9 @@ public class TopicReceiver_2 {
 
     @RabbitHandler
     public void receive(String in, Channel channel, Message message) throws IOException, InterruptedException {
-        TimeUnit.MILLISECONDS.sleep((int) (Math.random() * 10) * 100);
-        log.info(" [topic2] Received '{}'", in);
+        TimeUnit.SECONDS.sleep(1);
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        log.info(" [Topic2] Received '{}'", in);
     }
 
 }
