@@ -1,11 +1,12 @@
 package com.srw.provider.controller;
 
+import com.srw.common.dto.OrderParam;
 import com.srw.provider.mq.rabbit.*;
+import com.srw.provider.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dreamlu.mica.core.result.R;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description:
@@ -22,6 +23,7 @@ public class RabbitController {
     private final FanoutSender fanoutSender;
     private final DirectSender directSender;
     private final TopicSender topicSender;
+    private final OrderService portalOrderService;
 
     @RequestMapping("/send/simple")
     public R<?> sendSimple() {
@@ -61,6 +63,11 @@ public class RabbitController {
             topicSender.send(i, "发他10个topic消息"+i);
         }
         return R.success("send.topic.ok");
+    }
+
+    @PostMapping("send/order")
+    public R<?> generateOrder(@RequestBody OrderParam orderParam) {
+        return portalOrderService.generateOrder(orderParam);
     }
 
 }
