@@ -23,28 +23,29 @@ import java.util.Map;
  * @Date: 2020/12/11/13:46
  */
 @Slf4j
-@Component
 @Aspect
+@Component
 public class LogAspect {
 
-    @Pointcut("execution(public * com.srw.controller.*.*(..))")
+//    @Pointcut("execution(public * com.srw.controller.*.*(..))")
+    @Pointcut("@annotation(com.srw.common.annotation.Log)")
     public void webLog() {
     }
 
     @Around("webLog()")
-    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    public Object doAround(ProceedingJoinPoint point) throws Throwable {
         // 调用前
         long start = System.currentTimeMillis();
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        Object result = proceedingJoinPoint.proceed();
+        Object result = point.proceed();
         // 调用后
         LogInfo requestInfo = new LogInfo();
         requestInfo.setUrl(request.getRequestURL().toString());
         requestInfo.setHttpMethod(request.getMethod());
-        requestInfo.setClassMethod(String.format("%s.%s", proceedingJoinPoint.getSignature().getDeclaringTypeName(),
-                proceedingJoinPoint.getSignature().getName()));
-        requestInfo.setRequest(getRequestParams(proceedingJoinPoint));
+        requestInfo.setClassMethod(String.format("%s.%s", point.getSignature().getDeclaringTypeName(),
+                point.getSignature().getName()));
+        requestInfo.setRequest(getRequestParams(point));
         requestInfo.setResponse(result);
         requestInfo.setTimeCost(System.currentTimeMillis() - start);
         log.info("Request Info : {}", JSONUtil.toJsonStr(requestInfo));

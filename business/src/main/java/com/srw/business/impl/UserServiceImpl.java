@@ -2,6 +2,7 @@ package com.srw.business.impl;
 
 import com.srw.business.UserService;
 import com.srw.business.helper.IdempotenceHelper;
+import com.srw.common.annotation.Log;
 import com.srw.common.utils.RedisUtils;
 import com.srw.persistence.entity.User;
 import com.srw.persistence.mapper.UserMapper;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
     private final RedisUtils redisUtils;
     private final MongoTemplate mongoTemplate;
 
+    @Log
     @Override
     public List<User> findList() {
         List<User> list = userMapper.findList();
@@ -38,6 +40,7 @@ public class UserServiceImpl implements UserService {
         return list;
     }
 
+    @Log
     @Override
     public int save(User user) {
         idempotenceHelper.checkIdempotence(user.getName(), 60, TimeUnit.SECONDS);
