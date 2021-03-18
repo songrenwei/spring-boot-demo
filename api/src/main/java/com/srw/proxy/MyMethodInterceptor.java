@@ -14,10 +14,10 @@ public class MyMethodInterceptor implements MethodInterceptor {
 
     @Override
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-        System.out.println("目标类增强前！！！");
+        System.out.println("cglib proxy:执行目标对象方法前增强！！！");
         //注意这里的方法调用，不是用反射哦！！！
         Object object = proxy.invokeSuper(obj, args);
-        System.out.println("目标类增强后！！！");
+        System.out.println("cglib proxy:执行目标对象方法后增强！！！");
         return object;
     }
 

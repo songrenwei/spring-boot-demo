@@ -20,10 +20,10 @@ public class ProxyFactory {
     public Object getProxyInstance() {
         return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(),
                 (proxy, method, args) -> {
-                    System.out.println("目标类增强前！！！");
+                    System.out.println("jdk proxy:执行目标对象方法前增强！！！");
                     // 执行目标对象方法
                     method.invoke(target, args);
-                    System.out.println("目标类增强后！！！");
+                    System.out.println("jdk proxy:执行目标对象方法后增强！！！");
                     return null;
                 });
     }

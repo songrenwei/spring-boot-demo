@@ -1,13 +1,11 @@
 package com.srw;
 
 import com.srw.business.helper.ParamDigestHelper;
-import com.srw.proxy.MyMethodInterceptor;
-import com.srw.proxy.ProxyFactory;
-import com.srw.proxy.RealSubject;
-import com.srw.proxy.Subject;
+import com.srw.proxy.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 
 @SpringBootTest
@@ -16,10 +14,15 @@ class ApiApplicationTests {
     @Autowired
     ProxyFactory proxyFactory;
 
+    static{
+//        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "E:\\code");
+    }
+
     @Test
     public void testJdkProxy() {
         Subject subject = (Subject)proxyFactory.getProxyInstance();
         subject.request();
+        subject.request2();
     }
 
     @Test
@@ -34,6 +37,7 @@ class ApiApplicationTests {
         //这里的creat方法就是正式创建代理类
         RealSubject proxyDog = (RealSubject) enhancer.create();
         //调用代理类的eat方法
+        proxyDog.request();
         proxyDog.request2();
     }
 
