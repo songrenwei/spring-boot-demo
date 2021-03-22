@@ -9,7 +9,6 @@ import com.srw.persistence.mapper.UserMapper;
 import com.srw.persistence.mongodb.UserInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.dreamlu.mica.lock.annotation.RedisLock;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findList() {
         List<User> list = userMapper.findList();
-//        redisUtils.setObject("USER_LIST", list);
         return list;
     }
 
@@ -53,7 +51,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectById(id);
     }
 
-    @RedisLock(value = "USER_UPDATE", leaseTime = 10)
+//    @RedisLock(value = "USER_UPDATE", leaseTime = 10)
     @Override
     public int update(User user) {
         return userMapper.updateById(user);

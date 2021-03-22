@@ -24,9 +24,14 @@
             <groupId>net.dreamlu</groupId>
             <artifactId>mica-core</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>net.dreamlu</groupId>-->
+<!--            <artifactId>mica-plus-lock</artifactId>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>net.dreamlu</groupId>
-            <artifactId>mica-plus-lock</artifactId>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.4</version>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>
@@ -52,7 +57,6 @@
             <artifactId>javase</artifactId>
             <version>3.3.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>

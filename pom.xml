@@ -18,7 +18,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <mica.version>1.2.1</mica.version>
+        <mica.version>2.1.1-GA</mica.version>
         <job.version>2.2.0</job.version>
         <mybatisplus.version>3.1.2</mybatisplus.version>
         <mongoplus.version>1.0.0.RELEASE</mongoplus.version>
