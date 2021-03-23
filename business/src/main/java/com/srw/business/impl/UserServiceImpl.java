@@ -3,6 +3,7 @@ package com.srw.business.impl;
 import com.srw.business.UserService;
 import com.srw.business.helper.IdempotenceHelper;
 import com.srw.common.annotation.Log;
+import com.srw.common.dto.UserDto;
 import com.srw.common.utils.RedisUtils;
 import com.srw.persistence.entity.User;
 import com.srw.persistence.mapper.UserMapper;
@@ -13,8 +14,11 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @Description:
@@ -33,9 +37,11 @@ public class UserServiceImpl implements UserService {
 
     @Log
     @Override
-    public List<User> findList() {
+    public List<UserDto> findList() {
+
         List<User> list = userMapper.findList();
-        return list;
+
+        return Optional.ofNullable(list).orElse(new ArrayList<>()).stream().map(user -> new UserDto(user.getName(), user.getPassword())).collect(Collectors.toList());
     }
 
     @Log

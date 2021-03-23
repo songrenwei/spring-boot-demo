@@ -1,5 +1,6 @@
 package com.srw.business;
 
+import com.srw.common.dto.UserDto;
 import com.srw.persistence.entity.User;
 import com.srw.persistence.mongodb.UserInfo;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> findList();
+    List<UserDto> findList();
 
     int save(User u);
 
