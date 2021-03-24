@@ -1,11 +1,14 @@
 package com.srw;
 
+import cn.hutool.core.io.FileUtil;
 import com.srw.business.helper.ParamDigestHelper;
-import com.srw.proxy.*;
+import com.srw.proxy.MyMethodInterceptor;
+import com.srw.proxy.ProxyFactory;
+import com.srw.proxy.RealSubject;
+import com.srw.proxy.Subject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 
 @SpringBootTest
@@ -19,14 +22,14 @@ class ApiApplicationTests {
     }
 
     @Test
-    public void testJdkProxy() {
+    void testJdkProxy() {
         Subject subject = (Subject)proxyFactory.getProxyInstance();
         subject.request();
         subject.request2();
     }
 
     @Test
-    public void testCglibProxy() {
+    void testCglibProxy() {
         //创建Enhancer对象，类似于JDK动态代理的Proxy类，下一步就是设置几个参数
         Enhancer enhancer = new Enhancer();
         //设置目标类的字节码文件
@@ -65,21 +68,6 @@ class ApiApplicationTests {
 //        String dedupMD53 = ReqDedupHelper.dedupParamMD5(req,"requestTime");
 //        String dedupMD54 = ReqDedupHelper.dedupParamMD5(req2,"requestTime");
 //        System.out.println("req1MD5 = "+ dedupMD53+" , req2MD5="+dedupMD54);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
