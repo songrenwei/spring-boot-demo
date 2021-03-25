@@ -22,7 +22,7 @@ spring:
     mongodb:
       host: 39.98.127.133 # mongodb的连接地址
       port: 27017 # mongodb的连接端口号
-      database: demo-port # mongodb的连接的数据库
+      database: srw # mongodb的连接的数据库
   redis:
     lettuce:
       pool:
