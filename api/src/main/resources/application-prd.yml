@@ -15,7 +15,7 @@ spring:
     max-idle: 8
     max-wait: 10000
     min-idle: 8
-    url: jdbc:mysql://db:3306/srw?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://39.98.127.133:3306/srw?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: root
   data:
