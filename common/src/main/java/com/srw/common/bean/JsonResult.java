@@ -18,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class JsonResult<T> implements Serializable {
     private static final long serialVersionUID = -113486665877014274L;
-    private static String successMsg = "Success";
+    private static String successMsg = "success";
 
     @JsonProperty("code")
     private String status;

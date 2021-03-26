@@ -9,8 +9,8 @@ import java.util.Map;
  * @Date: 2020/10/14/15:15
  */
 public class Constants {
-    public static String RESULT_SUCCESS_CODE = "10000";
-    public static String RESULT_ERROR_CODE = "10001";
+    public static String RESULT_SUCCESS_CODE = "00000";
+    public static String RESULT_ERROR_CODE = "10000";
 
     /**
      * 自定义异常code
