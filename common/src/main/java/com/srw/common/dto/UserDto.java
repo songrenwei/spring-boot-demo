@@ -1,5 +1,6 @@
 package com.srw.common.dto;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,8 +13,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserDto {
 
+    @ExcelProperty("账号")
     private String name;
 
+    @ExcelProperty("密码")
     private String password;
 
 }

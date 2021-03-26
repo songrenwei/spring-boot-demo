@@ -1,5 +1,8 @@
 package com.srw.business.impl;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.write.metadata.WriteSheet;
 import com.srw.business.UserService;
 import com.srw.business.helper.IdempotenceHelper;
 import com.srw.common.annotation.Log;
@@ -14,7 +17,11 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -87,6 +94,20 @@ public class UserServiceImpl implements UserService {
         userInfo.setId(id);
         mongoTemplate.remove(userInfo);
         return 1;
+    }
+
+    @Override
+    public void export(HttpServletResponse response) {
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            String fileName = URLEncoder.encode("测试", "UTF-8").replace("\\+", "%20");
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+
+            EasyExcel.write(response.getOutputStream(), UserDto.class).sheet("模板").doWrite(findList());
+        } catch (Exception e) {
+            log.error("文件导出异常", e);
+        }
     }
 
 }

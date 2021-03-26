@@ -4,6 +4,7 @@ import com.srw.common.dto.UserDto;
 import com.srw.persistence.entity.User;
 import com.srw.persistence.mongodb.UserInfo;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -38,5 +39,12 @@ public interface UserService {
      * @return
      */
     List<UserInfo> list();
+
+    /**
+     * 文件导出
+     *
+     * @param response
+     */
+    void export(HttpServletResponse response);
 
 }
