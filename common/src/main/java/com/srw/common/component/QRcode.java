@@ -21,7 +21,7 @@ public class QRcode {
     public void generateQRcode(HttpServletResponse response) {
         QrConfig config = new QrConfig(300, 300);
         try {
-            QrCodeUtil.generate("hello world", config, "jpg", response.getOutputStream());
+            QrCodeUtil.generate("嘿嘿，被你发现了", config, "jpg", response.getOutputStream());
         } catch (IOException e) {
             log.info("QRcode generateQRcode Exception: ", e);
         }
