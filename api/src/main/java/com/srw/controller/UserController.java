@@ -1,8 +1,11 @@
 package com.srw.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.srw.business.UserService;
 import com.srw.common.bean.JsonResult;
 import com.srw.common.component.QRcode;
+import com.srw.common.component.excel.DataModel;
+import com.srw.common.component.excel.DownloadData;
 import com.srw.persistence.entity.User;
 import com.srw.persistence.mongodb.UserInfo;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @Description:
@@ -72,6 +80,29 @@ public class UserController {
     @GetMapping("/qrcode")
     public void qrcode(HttpServletResponse response) {
         qRcode.generateQRcode(response);
+    }
+
+    //    ========================================export======================================
+
+    @GetMapping("export")
+    public void export(HttpServletResponse response) throws IOException {
+        response.setContentType("application/vnd.ms-excel");
+        response.setCharacterEncoding("utf-8");
+        String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        EasyExcel.write(response.getOutputStream(), DataModel.class).sheet("模板").doWrite(data());
+    }
+
+    private List<DownloadData> data() {
+        List<DownloadData> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            DownloadData data = new DownloadData();
+            data.setString("字符串" + 0);
+            data.setDate(new Date());
+            data.setDoubleData(0.56);
+            list.add(data);
+        }
+        return list;
     }
 
 }
