@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         log.info("是否部署成功了吗");
         List<User> list = userMapper.findList();
 
-        return Optional.ofNullable(list).orElse(new ArrayList<>()).stream().map(user -> new UserDto(user.getName(), user.getPassword())).collect(Collectors.toList());
+        return Optional.ofNullable(list).orElse(new ArrayList<>()).stream().map(user -> new UserDto(user.getName()+"haha", user.getPassword())).collect(Collectors.toList());
     }
 
     @Log
