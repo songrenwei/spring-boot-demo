@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Log
     @Override
     public List<UserDto> findList() {
-
+        log.info("是否部署成功");
         List<User> list = userMapper.findList();
 
         return Optional.ofNullable(list).orElse(new ArrayList<>()).stream().map(user -> new UserDto(user.getName(), user.getPassword())).collect(Collectors.toList());
