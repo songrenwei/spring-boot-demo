@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.srw</groupId>
-    <artifactId>boot-stage</artifactId>
+    <artifactId>spring-boot-demo</artifactId>
     <version>1.0.1-SNAPSHOT</version>
-    <name>boot-stage</name>
+    <name>spring-boot-demo</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
